@@ -167,9 +167,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: "grey",
-    borderRadius: 5,
+    borderRadius: 10, // Updated to match design
     marginBottom: 12,
     paddingLeft: 10,
+    height: 40, // Updated to match design
   },
   searchIcon: {
     marginRight: 5,
@@ -193,13 +194,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   leftButton: {
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 10, // Updated to match design
+    borderBottomLeftRadius: 10, // Updated to match design
     borderRightWidth: 0,
   },
   rightButton: {
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
+    borderTopRightRadius: 10, // Updated to match design
+    borderBottomRightRadius: 10, // Updated to match design
   },
   filterSortText: {
     marginLeft: 5,
@@ -222,7 +223,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   taskTitle: {
-    fontSize: 18,
+    fontSize: 16, // Adjusted to match design
     flex: 1,
     marginLeft: 10,
     fontFamily: "Roboto-Regular",

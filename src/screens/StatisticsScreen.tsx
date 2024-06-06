@@ -79,8 +79,8 @@ const StatisticsScreen: React.FC = () => {
       <View style={styles.chartWrapper}>
         <PieChart
           data={chartData}
-          width={300}
-          height={220}
+          width={200}
+          height={200}
           chartConfig={{
             backgroundColor: "#fff",
             backgroundGradientFrom: "#fff",
@@ -150,29 +150,37 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   header: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: "bold",
     marginBottom: 12,
-    textAlign: "center",
+    textAlign: "left",
     color: "#333",
   },
   chartWrapper: {
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
-    backgroundColor: "#f5f5f5",
-    borderRadius: 16,
+    backgroundColor: "#fff",
+    borderRadius: 8,
     padding: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   albumCount: {
-    fontSize: 18,
+    fontSize: 14,
     marginBottom: 8,
-    textAlign: "center",
+    textAlign: "left",
     color: "#666",
   },
   photo: {
-    width: 150,
-    height: 150,
+    width: 60,
+    height: 60,
     marginRight: 8,
     borderRadius: 8,
   },
@@ -189,13 +197,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   legendColorBox: {
-    width: 20,
-    height: 20,
+    width: 12,
+    height: 12,
     marginRight: 5,
     borderRadius: 4,
   },
   legendText: {
-    fontSize: 15,
+    fontSize: 12,
     color: "#333",
   },
 });

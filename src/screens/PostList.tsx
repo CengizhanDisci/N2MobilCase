@@ -21,6 +21,7 @@ const PostList = observer(() => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [sortOption, setSortOption] = useState<"A-Z" | "Z-A">("A-Z");
+  const [expandedPosts, setExpandedPosts] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     loadPosts();
@@ -76,15 +77,35 @@ const PostList = observer(() => {
   };
 
   // Post bileşeni
-  const renderItem = ({ item }: { item: PostWithUniqueId }) => (
-    <View style={styles.postItem}>
-      <Text style={styles.postTitle}>{item.title}</Text>
-      <Text style={styles.postBody}>{item.body}</Text>
-      <TouchableOpacity style={styles.seeMoreButton}>
-        <Text style={styles.seeMoreText}>Daha Fazla</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  const renderItem = ({ item }: { item: PostWithUniqueId }) => {
+    const isExpanded = expandedPosts[item.uniqueId];
+    const textLimit = 100; // Character limit for the post body
+
+    return (
+      <View style={styles.postItem}>
+        <Text style={styles.postTitle}>{item.title}</Text>
+        <Text style={styles.postBody}>
+          {isExpanded ? item.body : item.body.substring(0, textLimit)}
+          {item.body.length > textLimit && !isExpanded && '...'}
+        </Text>
+        {item.body.length > textLimit && (
+          <TouchableOpacity
+            style={styles.seeMoreButton}
+            onPress={() => {
+              setExpandedPosts((prevState) => ({
+                ...prevState,
+                [item.uniqueId]: !isExpanded,
+              }));
+            }}
+          >
+            <Text style={styles.seeMoreText}>
+              {isExpanded ? 'Daha Az' : 'Daha Fazla'}
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  };
 
   // Daha fazla post yükleyen fonksiyon
   const handleLoadMore = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../types"; // Tipleri buradan alacağız
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -17,7 +17,6 @@ type Props = {
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleForgotPassword = () => {
@@ -63,10 +62,12 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             onChangeText={setEmail}
             style={styles.input}
           />
-          <Button
-            title="Sıfırlama Linki Gönder"
+          <TouchableOpacity
+            style={styles.button}
             onPress={handleResetPassword}
-          />
+          >
+            <Text style={styles.buttonText}>Sıfırlama Linki Gönder</Text>
+          </TouchableOpacity>
           <Text
             style={styles.backToLogin}
             onPress={() => setIsForgotPassword(false)}
@@ -82,10 +83,10 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
               style={styles.logo}
               resizeMode="contain"
             />
-            <Text style={styles.title}>CRM'e Hoş Geldiniz</Text>
+            <Text style={styles.title}>N2Mobil CRM'e Hoş Geldiniz</Text>
           </View>
           <TextInput
-            placeholder="E-posta"
+            placeholder="Kullanıcı Adı"
             value={email}
             onChangeText={setEmail}
             style={styles.input}
@@ -97,7 +98,9 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             secureTextEntry
             style={styles.input}
           />
-          <Button title="Giriş Yap" onPress={handleLogin} />
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Giriş Yap</Text>
+          </TouchableOpacity>
           <Text style={styles.forgotPassword} onPress={handleForgotPassword}>
             Şifremi Unuttum
           </Text>
@@ -112,23 +115,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: 16,
-    backgroundColor: "#fff",
+    alignItems: "center",
+    backgroundColor: "#fff", // White background
   },
   logoContainer: {
-    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
     marginBottom: 20,
   },
   logo: {
     width: 120,
     height: 60,
-    marginRight: 10,
+    marginBottom: 10,
   },
   title: {
     fontSize: 22,
     fontWeight: "bold",
-    fontFamily: "Roboto-Bold",
+    color: "#333", // Dark text color
+    marginBottom: 20,
   },
   input: {
     height: 40,
@@ -137,15 +140,29 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     padding: 10,
     borderRadius: 5,
-    fontFamily: "Roboto-Regular",
+    width: '100%',
+    backgroundColor: "#fff",
+  },
+  button: {
+    backgroundColor: "#1E88E5",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    width: '100%',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
   forgotPassword: {
-    color: "blue",
+    color: "#1E88E5",
     marginTop: 10,
     textAlign: "center",
   },
   backToLogin: {
-    color: "blue",
+    color: "#1E88E5",
     marginTop: 10,
     textAlign: "center",
   },
